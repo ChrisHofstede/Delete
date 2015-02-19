@@ -1,0 +1,36 @@
+#define IDI_DELETE	1
+
+IDI_DELETE ICON "delete.ico"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1,0,0,1
+PRODUCTVERSION 1,0,0,1
+FILEFLAGSMASK 0x3fL
+FILEFLAGS 0x0L
+FILEOS 0x10004L
+FILETYPE 0x1L
+FILESUBTYPE 0x0L
+{
+  BLOCK "StringFileInfo"
+  {
+    BLOCK "000004b0"
+    {
+       VALUE "CompanyName", "C-Soft\0"
+       VALUE "FileDescription", "Deletes files and directories\0"
+       VALUE "FileVersion", "2, 0, 0, 1\0"
+       VALUE "InternalName", "Delete\0"
+       VALUE "LegalCopyright", "Copyright © 2006\0"
+       VALUE "OriginalFilename", "Delete.exe\0"
+       VALUE "ProductName", "Delete\0"
+       VALUE "ProductVersion", "1, 0, 0, 1\0"
+    }
+
+  }
+
+  BLOCK "VarFileInfo"
+  {
+     VALUE "Translation", 0x0, 1200
+  }
+}
+
+
