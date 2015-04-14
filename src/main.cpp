@@ -1,4 +1,3 @@
-#include <windows.h>
 #include <bstring.h>
 #include <butils.h>
 #include <bexcept.h>
