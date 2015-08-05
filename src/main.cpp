@@ -10,9 +10,12 @@ using b::String;
 // Defines
 // #define CANDELETE
 
+
 //---------------------------------------------------------------------------
 ConsoleOut cout;
 ConsoleErr cerr;
+
+String getLastErrorMessage();
 
 class TFindOldFiles: public ScanFile {
 	LARGE_INTEGER Time;
@@ -58,6 +61,8 @@ public:
 #endif
 };
 
+
+
 int main(int argc, char** argv) {
 #ifdef UNICODE
 	argv = CommandLineToArgvW(GetCommandLine(), &argc);
@@ -101,10 +106,11 @@ int main(int argc, char** argv) {
 #else
 						if (DeleteFile(Path))
 #endif
-						{
+								{
 							cout << TEXT("Deleted  : ") << Path << endl;
 						} else {
 							cerr << TEXT("Cannot delete: ") << Path << endl;
+							cerr << TEXT("Reason       : ") << getLastErrorMessage() << endl;
 						}
 					}
 				}
@@ -134,4 +140,20 @@ int main(int argc, char** argv) {
 	asm int 3;
 #endif
 	return 0;
+}
+
+String getLastErrorMessage() {
+	String msg;
+	TCHAR* MsgBuf = 0;
+	if (FormatMessage(
+	FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+	NULL, GetLastError(), 0, // MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
+			(LPTSTR)&MsgBuf, 0,
+			NULL)) {
+		msg = MsgBuf;
+	} else {
+		msg.clear();
+	}
+	LocalFree(MsgBuf);
+	return msg;
 }
