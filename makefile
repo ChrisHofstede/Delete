@@ -6,12 +6,12 @@ VPATH = src
 OBJECTS = main.o delete.o
 EXE = delete.exe
 
-delete.exe : $(OBJECTS)
+$(EXE) : $(OBJECTS)
 	$(CC) -o $(EXE) $(OBJECTS) $(LDFLAGS)
 	
-main.o :
+main.o : main.cpp
 
-delete.o : delete.rc
+delete.o : delete.rc delete.ico
 	windres -i delete.rc -o delete.o
 	
 clean :
