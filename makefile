@@ -1,6 +1,6 @@
 CC = gcc
 CPPFLAGS = -Wall -O3 -D STRICT -I ../include
-LDFLAGS = -lsupc++
+LDFLAGS = -static -lsupc++
 VPATH = src
 
 OBJECTS = main.o delete.o
