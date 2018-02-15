@@ -10,7 +10,6 @@ using b::String;
 // Defines
 // #define CANDELETE
 
-
 //---------------------------------------------------------------------------
 ConsoleOut cout;
 ConsoleErr cerr;
@@ -61,8 +60,6 @@ public:
 #endif
 };
 
-
-
 int main(int argc, char** argv) {
 #ifdef UNICODE
 	argv = CommandLineToArgvW(GetCommandLine(), &argc);
@@ -102,15 +99,15 @@ int main(int argc, char** argv) {
 					if (Scan.IsOlder()) {
 						Path = Scan.GetFile();
 #ifdef CANDELETE
-						if(TFindOldFiles::CanDelete(Path) && DeleteFile(Path))
+						if(TFindOldFiles::CanDelete(Path) && DeleteFile(Path)) {
 #else
-						if (DeleteFile(Path))
+						if (DeleteFile(Path)) {
 #endif
-								{
 							cout << TEXT("Deleted  : ") << Path << endl;
 						} else {
 							cerr << TEXT("Cannot delete: ") << Path << endl;
-							cerr << TEXT("Reason       : ") << getLastErrorMessage() << endl;
+							cerr << TEXT("Reason       : ")
+									<< getLastErrorMessage() << endl;
 						}
 					}
 				}
@@ -148,7 +145,7 @@ String getLastErrorMessage() {
 	if (FormatMessage(
 	FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
 	NULL, GetLastError(), 0, // MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-			(LPTSTR)&MsgBuf, 0,
+			(LPTSTR) &MsgBuf, 0,
 			NULL)) {
 		msg = MsgBuf;
 	} else {
