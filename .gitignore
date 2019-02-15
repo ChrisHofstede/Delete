@@ -1,7 +1,6 @@
 .settings/
-Debug/
-Release/
 .cproject
 .project
 *.o
 *.exe
+/Default/
